@@ -1,12 +1,7 @@
-import { handleTokenRequest, type TokenApiBody } from '../../server/oauth-token'
+import type { VercelRequest, VercelResponse } from '@vercel/node'
+import { handleTokenRequest, type TokenApiBody } from '../lib/oauth-token.js'
 
-type Req = { method?: string; body?: TokenApiBody }
-type Res = {
-  status: (code: number) => { json: (data: unknown) => void }
-  setHeader: (name: string, value: string) => void
-}
-
-export default async function handler(req: Req, res: Res) {
+export default async function handler(req: VercelRequest, res: VercelResponse) {
   res.setHeader('Cache-Control', 'no-store')
 
   if (req.method !== 'POST') {
@@ -14,7 +9,7 @@ export default async function handler(req: Req, res: Res) {
   }
 
   try {
-    const body = req.body
+    const body = req.body as TokenApiBody | undefined
     if (!body?.grant_type) {
       return res.status(400).json({ error: 'Invalid request body' })
     }
