@@ -3,7 +3,8 @@ import { readJson, removeKey, writeJson } from '@/lib/storage/local-storage'
 import type { GoogleTokens } from './types'
 
 const SCOPES = [
-  'https://www.googleapis.com/auth/spreadsheets',
+  // XXX: We only want to access files created by this app, not all spreadsheet files
+  // 'https://www.googleapis.com/auth/spreadsheets',
   'https://www.googleapis.com/auth/drive.file',
   'openid',
   'email',
