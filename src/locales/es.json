@@ -1,0 +1,116 @@
+{
+  "app": {
+    "name": "CalculaHora",
+    "tagline": "Control de horas sencillo con Google Sheets"
+  },
+  "auth": {
+    "title": "Conectar Google",
+    "description": "Tus datos permanecen en tu cuenta de Google. Solo guardamos tokens en este navegador.",
+    "connect": "Conectar con Google",
+    "connectedAs": "Conectado como {{email}}"
+  },
+  "workspaces": {
+    "title": "Espacios de trabajo",
+    "subtitle": "Cada espacio es una hoja de cálculo en tu carpeta CalculaHora.",
+    "create": "Crear espacio",
+    "namePlaceholder": "Nombre del espacio",
+    "timezone": "Zona horaria",
+    "open": "Abrir",
+    "empty": "Aún no hay espacios. Crea el primero.",
+    "switch": "Cambiar espacio"
+  },
+  "nav": {
+    "tracker": "Registro",
+    "projects": "Proyectos",
+    "reports": "Informes",
+    "settings": "Ajustes"
+  },
+  "settings": {
+    "title": "Ajustes del espacio",
+    "description": "Zona horaria y formato de hora para este espacio.",
+    "saved": "Ajustes guardados"
+  },
+  "tracker": {
+    "title": "¿En qué estás trabajando?",
+    "project": "Proyecto",
+    "billable": "Facturable",
+    "start": "Iniciar",
+    "stop": "Detener",
+    "restart": "Iniciar de nuevo",
+    "running": "En curso",
+    "activeTimers": "Temporizadores activos",
+    "noProject": "Sin proyecto",
+    "empty": "Aún no hay entradas.",
+    "page": "Página {{page}} de {{total}}",
+    "timeFormat": "Formato de hora",
+    "timeFormat24": "24 horas",
+    "timeFormat12": "12 horas (AM/PM)",
+    "duration": "Duración",
+    "startTime": "Inicio",
+    "endTime": "Fin",
+    "entryDate": "Fecha",
+    "editEntry": "Editar",
+    "deleteEntry": "Eliminar entrada",
+    "runningEditHint": "Ajusta la duración para detener el temporizador con una hora de fin calculada.",
+    "moreActions": "Más acciones",
+    "deleteConfirmTitle": "¿Eliminar entrada?",
+    "deleteConfirmDescription": "Esta acción no se puede deshacer. La entrada se eliminará de la hoja de cálculo.",
+    "dayTotal": "Total: {{duration}}"
+  },
+  "projects": {
+    "title": "Proyectos",
+    "name": "Nombre",
+    "billableDefault": "Facturable por defecto",
+    "currency": "Moneda",
+    "rate": "Tarifa horaria",
+    "add": "Añadir proyecto",
+    "save": "Guardar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "empty": "Aún no hay proyectos.",
+    "color": "Color",
+    "colorNone": "Sin color",
+    "colorPick": "Elegir color"
+  },
+  "reports": {
+    "title": "Informes",
+    "from": "Desde",
+    "to": "Hasta",
+    "project": "Proyecto",
+    "allProjects": "Todos los proyectos",
+    "presets": {
+      "thisMonth": "Este mes",
+      "lastMonth": "Mes pasado",
+      "thisYear": "Este año",
+      "lastYear": "Año pasado"
+    },
+    "duration": "Duración",
+    "amount": "Importe",
+    "totalDuration": "Total",
+    "totalAmount": "Facturable",
+    "rateHint": "{{rate}} {{currency}}/h",
+    "running": "En curso",
+    "exportCsv": "Exportar CSV",
+    "exportPdf": "Exportar PDF",
+    "exportShowAmount": "Incluir importe en el PDF",
+    "pdf": {
+      "title": "Informe",
+      "date": "Fecha",
+      "description": "Descripción",
+      "duration": "Duración"
+    },
+    "empty": "No hay entradas para este filtro."
+  },
+  "common": {
+    "loading": "Cargando…",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "logout": "Desconectar Google",
+    "back": "Volver",
+    "error": "Algo salió mal",
+    "prev": "Anterior",
+    "next": "Siguiente",
+    "yes": "Sí",
+    "no": "No"
+  }
+}

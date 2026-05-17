@@ -1,0 +1,116 @@
+{
+  "app": {
+    "name": "CalculaHora",
+    "tagline": "Simple time tracking with Google Sheets"
+  },
+  "auth": {
+    "title": "Connect Google",
+    "description": "Your data stays in your Google account. We store tokens only in this browser.",
+    "connect": "Connect with Google",
+    "connectedAs": "Connected as {{email}}"
+  },
+  "workspaces": {
+    "title": "Workspaces",
+    "subtitle": "Each workspace is a spreadsheet in your CalculaHora folder.",
+    "create": "Create workspace",
+    "namePlaceholder": "Workspace name",
+    "timezone": "Timezone",
+    "open": "Open",
+    "empty": "No workspaces yet. Create your first one.",
+    "switch": "Switch workspace"
+  },
+  "nav": {
+    "tracker": "Time tracker",
+    "projects": "Projects",
+    "reports": "Reports",
+    "settings": "Settings"
+  },
+  "settings": {
+    "title": "Workspace settings",
+    "description": "Timezone and time display format for this workspace.",
+    "saved": "Settings saved"
+  },
+  "tracker": {
+    "title": "What are you working on?",
+    "project": "Project",
+    "billable": "Billable",
+    "start": "Start",
+    "stop": "Stop",
+    "restart": "Start again",
+    "running": "Running",
+    "activeTimers": "Active timers",
+    "noProject": "No project",
+    "empty": "No entries yet.",
+    "page": "Page {{page}} of {{total}}",
+    "timeFormat": "Time format",
+    "timeFormat24": "24-hour",
+    "timeFormat12": "12-hour (AM/PM)",
+    "duration": "Duration",
+    "startTime": "Start",
+    "endTime": "End",
+    "entryDate": "Date",
+    "editEntry": "Edit",
+    "deleteEntry": "Delete entry",
+    "runningEditHint": "Set duration to stop this timer with a calculated end time.",
+    "moreActions": "More actions",
+    "deleteConfirmTitle": "Delete time entry?",
+    "deleteConfirmDescription": "This cannot be undone. The entry will be removed from your spreadsheet.",
+    "dayTotal": "Total: {{duration}}"
+  },
+  "projects": {
+    "title": "Projects",
+    "name": "Name",
+    "billableDefault": "Billable by default",
+    "currency": "Currency",
+    "rate": "Hourly rate",
+    "add": "Add project",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "empty": "No projects yet.",
+    "color": "Color",
+    "colorNone": "No color",
+    "colorPick": "Pick a color"
+  },
+  "reports": {
+    "title": "Reports",
+    "from": "From",
+    "to": "To",
+    "project": "Project",
+    "allProjects": "All projects",
+    "presets": {
+      "thisMonth": "This month",
+      "lastMonth": "Last month",
+      "thisYear": "This year",
+      "lastYear": "Last year"
+    },
+    "duration": "Duration",
+    "amount": "Amount",
+    "totalDuration": "Total",
+    "totalAmount": "Billable",
+    "rateHint": "{{rate}} {{currency}}/h",
+    "running": "In progress",
+    "exportCsv": "Export CSV",
+    "exportPdf": "Export PDF",
+    "exportShowAmount": "Include amount in PDF",
+    "pdf": {
+      "title": "Report",
+      "date": "Date",
+      "description": "Description",
+      "duration": "Duration"
+    },
+    "empty": "No entries for this filter."
+  },
+  "common": {
+    "loading": "Loading…",
+    "save": "Save",
+    "cancel": "Cancel",
+    "logout": "Disconnect Google",
+    "back": "Back",
+    "error": "Something went wrong",
+    "prev": "Previous",
+    "next": "Next",
+    "yes": "Yes",
+    "no": "No"
+  }
+}
