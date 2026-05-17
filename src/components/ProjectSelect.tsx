@@ -35,7 +35,7 @@ export function ProjectSelect({
           variant="outline"
           disabled={disabled}
           className={cn(
-            'h-8 min-w-[120px] flex-[1_1_140px] justify-between gap-1 px-2 font-normal',
+            'h-8 min-w-[120px] max-w-[200px] justify-between gap-1 px-2 font-normal',
             className,
           )}
         >

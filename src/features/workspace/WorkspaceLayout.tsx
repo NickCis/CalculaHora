@@ -11,6 +11,8 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip'
 import { cn } from '@/lib/utils'
+import { RunningTimerDocument } from '@/components/RunningTimerDocument'
+import { workspaceContentClass } from '@/lib/layout'
 
 export function WorkspaceLayout() {
   const { t } = useTranslation()
@@ -41,8 +43,9 @@ export function WorkspaceLayout() {
 
   return (
     <div className="min-h-screen">
+      <RunningTimerDocument />
       <header className="border-b border-border px-6 py-4">
-        <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-4">
+        <div className={cn(workspaceContentClass, 'flex flex-wrap items-center justify-between gap-4')}>
           <div>
             <h1 className="text-xl font-semibold">{meta?.name ?? t('common.loading')}</h1>
             {meta?.timezone && (
@@ -72,14 +75,14 @@ export function WorkspaceLayout() {
             </Tooltip>
           </div>
         </div>
-        <nav className="mx-auto mt-4 flex max-w-5xl flex-wrap gap-2">
+        <nav className={cn(workspaceContentClass, 'mt-4 flex flex-wrap gap-2')}>
           {link('tracker', t('nav.tracker'))}
           {link('projects', t('nav.projects'))}
           {link('reports', t('nav.reports'))}
           {link('settings', t('nav.settings'))}
         </nav>
       </header>
-      <main className="mx-auto max-w-5xl p-6">
+      <main className={cn(workspaceContentClass, 'p-6')}>
         <Outlet />
       </main>
     </div>

@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
+import { DollarSign } from 'lucide-react'
 import { toast } from 'sonner'
 import type { TimeEntry } from '@/lib/sheets/schema'
 import { isRunningEntry } from '@/lib/sheets/schema'
@@ -23,6 +24,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 
 export function ReportsPage() {
   const { t } = useTranslation()
@@ -167,25 +169,17 @@ export function ReportsPage() {
               ))}
             </select>
           </div>
-          <div className="flex flex-wrap items-center gap-4 sm:col-span-2">
-            <label className="flex cursor-pointer items-center gap-2 text-sm">
-              <input
-                type="checkbox"
-                className="size-4 rounded border border-input"
-                checked={exportShowAmount}
-                onChange={(e) => setExportShowAmount(e.target.checked)}
-              />
-              {t('reports.exportShowAmount')}
-            </label>
-            <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2 sm:col-span-2">
+            <Button
+              variant="outline"
+              onClick={() => exportCsv(filtered, projects, meta.timezone, t)}
+            >
+              {t('reports.exportCsv')}
+            </Button>
+            <div className="inline-flex">
               <Button
                 variant="outline"
-                onClick={() => exportCsv(filtered, projects, meta.timezone, t)}
-              >
-                {t('reports.exportCsv')}
-              </Button>
-              <Button
-                variant="outline"
+                className="rounded-r-none border-r-0"
                 onClick={() =>
                   exportPdf(filtered, projects, {
                     tz: meta.timezone,
@@ -203,6 +197,22 @@ export function ReportsPage() {
               >
                 {t('reports.exportPdf')}
               </Button>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    type="button"
+                    variant={exportShowAmount ? 'default' : 'outline'}
+                    size="icon"
+                    className="-ml-px size-9 shrink-0 rounded-l-none rounded-r-md focus-visible:z-10"
+                    onClick={() => setExportShowAmount((v) => !v)}
+                    aria-label={t('reports.exportShowAmount')}
+                    aria-pressed={exportShowAmount}
+                  >
+                    <DollarSign className="h-4 w-4" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>{t('reports.exportShowAmount')}</TooltipContent>
+              </Tooltip>
             </div>
           </div>
         </CardContent>

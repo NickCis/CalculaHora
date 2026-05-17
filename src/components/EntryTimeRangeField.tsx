@@ -22,10 +22,12 @@ export function EntryTimeRangeField({
   entryDate,
   timeFormat,
   disabled,
-  endDisabled,
+  hideEndTime,
   onStartTimeChange,
   onEndTimeChange,
   onDateChange,
+  onStartFocus,
+  onEndFocus,
   onStartBlur,
   onEndBlur,
   className,
@@ -38,12 +40,14 @@ export function EntryTimeRangeField({
   entryDate: string
   timeFormat: TimeFormat
   disabled?: boolean
-  endDisabled?: boolean
+  hideEndTime?: boolean
   onStartTimeChange: (time: string) => void
   onEndTimeChange: (time: string) => void
   onDateChange: (date: string) => void
-  onStartBlur?: () => void
-  onEndBlur?: () => void
+  onStartFocus?: () => void
+  onEndFocus?: () => void
+  onStartBlur?: (normalizedStart: string) => void
+  onEndBlur?: (normalizedEnd: string) => void
   className?: string
   startAriaLabel?: string
   endAriaLabel?: string
@@ -53,21 +57,29 @@ export function EntryTimeRangeField({
   const placeholder = timeInputPlaceholder(timeFormat)
 
   const handleStartBlur = () => {
-    if (startTime.trim()) {
-      onStartTimeChange(normalizeTimeInput(startTime, timeFormat))
-    }
-    onStartBlur?.()
+    const normalized = startTime.trim()
+      ? normalizeTimeInput(startTime, timeFormat)
+      : startTime
+    onStartTimeChange(normalized)
+    onStartBlur?.(normalized)
   }
 
   const handleEndBlur = () => {
-    if (endTime.trim()) {
-      onEndTimeChange(normalizeTimeInput(endTime, timeFormat))
-    }
-    onEndBlur?.()
+    const normalized = endTime.trim() ? normalizeTimeInput(endTime, timeFormat) : endTime
+    onEndTimeChange(normalized)
+    onEndBlur?.(normalized)
   }
 
   return (
-    <div className={cn('flex min-w-[200px] flex-[1_1_260px] items-stretch', className)}>
+    <div
+      className={cn(
+        'flex items-stretch',
+        hideEndTime
+          ? 'min-w-[120px] shrink-0 flex-[0_0_auto]'
+          : 'min-w-[200px] shrink-0 flex-[0_0_auto]',
+        className,
+      )}
+    >
       <Input
         type="text"
         className={cn(timeInputClass, 'rounded-r-none border-r-0')}
@@ -75,21 +87,25 @@ export function EntryTimeRangeField({
         disabled={disabled}
         placeholder={placeholder}
         onChange={(e) => onStartTimeChange(e.target.value)}
+        onFocus={onStartFocus}
         onBlur={handleStartBlur}
         onKeyDown={commitOnEnter}
         aria-label={startAriaLabel}
       />
-      <Input
-        type="text"
-        className={cn(timeInputClass, '-ml-px rounded-none border-r-0')}
-        value={endTime}
-        disabled={disabled || endDisabled}
-        placeholder={placeholder}
-        onChange={(e) => onEndTimeChange(e.target.value)}
-        onBlur={handleEndBlur}
-        onKeyDown={commitOnEnter}
-        aria-label={endAriaLabel}
-      />
+      {!hideEndTime && (
+        <Input
+          type="text"
+          className={cn(timeInputClass, '-ml-px rounded-none border-r-0')}
+          value={endTime}
+          disabled={disabled}
+          placeholder={placeholder}
+          onChange={(e) => onEndTimeChange(e.target.value)}
+          onFocus={onEndFocus}
+          onBlur={handleEndBlur}
+          onKeyDown={commitOnEnter}
+          aria-label={endAriaLabel}
+        />
+      )}
       <input
         ref={dateInputRef}
         type="date"

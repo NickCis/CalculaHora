@@ -113,6 +113,8 @@ export function EntryRow({
 
   const durationFocused = useRef(false)
   const amountFocused = useRef(false)
+  const startTimeFocused = useRef(false)
+  const endTimeFocused = useRef(false)
   const entryRev = useRef(entry)
 
   useEffect(() => {
@@ -122,20 +124,21 @@ export function EntryRow({
     setBillable(entry.billable)
     setEntryDate(isoToDateInput(entry.startTime, timezone))
     setEndDayOffset(endDayOffsetFromEntry(entry, timezone))
-    setStartTime(formatTimeInput(entry.startTime, timezone, timeFormat))
-    setEndTime(
-      entry.endTime && !isRunningEntry(entry)
-        ? formatTimeInput(entry.endTime, timezone, timeFormat)
-        : '',
-    )
+    if (!startTimeFocused.current) {
+      setStartTime(formatTimeInput(entry.startTime, timezone, timeFormat))
+    }
+    if (!endTimeFocused.current) {
+      setEndTime(
+        entry.endTime && !isRunningEntry(entry)
+          ? formatTimeInput(entry.endTime, timezone, timeFormat)
+          : '',
+      )
+    }
     if (!durationFocused.current) {
       setDurationHms(formatDurationHms(entryDurationMs(entry, now)))
     }
-    if (!amountFocused.current && showAmount) {
-      setAmountInput(formatAmount(entryAmount(entry, now)))
-    }
     entryRev.current = entry
-  }, [entry, timezone, timeFormat, now, loading, showAmount])
+  }, [entry, timezone, timeFormat, loading])
 
   useEffect(() => {
     if (!running || durationFocused.current) return
@@ -172,25 +175,8 @@ export function EntryRow({
     persist({ title })
   }
 
-  const startIso = (date = entryDate) =>
-    dateAndTimeToIso(
-      date,
-      startTime,
-      timezone,
-      timeFormat,
-      entryRev.current.startTime,
-    )
-
-  const resolvedEndIso = (date = entryDate, dayOffset = endDayOffset) =>
-    resolveEndWithDayOffset(
-      date,
-      startTime,
-      endTime,
-      dayOffset,
-      timezone,
-      timeFormat,
-      entryRev.current.endTime ?? undefined,
-    )
+  const startIso = (date = entryDate, time = startTime) =>
+    dateAndTimeToIso(date, time, timezone, timeFormat, entryRev.current.startTime)
 
   const applyEntryDate = (newDate: string) => {
     setEntryDate(newDate)
@@ -215,15 +201,28 @@ export function EntryRow({
     }
   }
 
-  const saveStartAndEnd = (date = entryDate) => {
-    const start = startIso(date)
+  const saveStartAndEnd = (
+    date = entryDate,
+    times?: { startTime?: string; endTime?: string },
+  ) => {
+    const startVal = times?.startTime ?? startTime
+    const endVal = times?.endTime ?? endTime
+    const start = startIso(date, startVal)
     if (!start) return
 
     const patch: Partial<TimeEntry> & { endTime?: string } = {}
     if (start !== entryRev.current.startTime) patch.startTime = start
 
-    if (!running && endTime.trim()) {
-      const end = resolvedEndIso(date, endDayOffset)
+    if (!running && endVal.trim()) {
+      const end = resolveEndWithDayOffset(
+        date,
+        startVal,
+        endVal,
+        endDayOffset,
+        timezone,
+        timeFormat,
+        entryRev.current.endTime ?? undefined,
+      )
       if (end && end !== entryRev.current.endTime) patch.endTime = end
     }
 
@@ -231,28 +230,41 @@ export function EntryRow({
     persist(patch)
   }
 
-  const saveStart = () => saveStartAndEnd()
+  const saveStart = (startOverride?: string) => {
+    if (startOverride !== undefined) setStartTime(startOverride)
+    saveStartAndEnd(entryDate, { startTime: startOverride ?? startTime })
+  }
 
-  const saveEnd = () => {
+  const saveEnd = (endOverride?: string) => {
     if (running) return
+    const endVal = endOverride ?? endTime
+    if (endOverride !== undefined) setEndTime(endOverride)
     const start = startIso()
     if (!start) return
 
     const offset = inferEndDayOffsetFromTimes(
       entryDate,
       startTime,
-      endTime,
+      endVal,
       timezone,
       timeFormat,
     )
-    const resolved = resolvedEndIso(entryDate, offset)
+    const resolved = resolveEndWithDayOffset(
+      entryDate,
+      startTime,
+      endVal,
+      offset,
+      timezone,
+      timeFormat,
+      entry.endTime ?? undefined,
+    )
     if (!resolved) return
 
     if (entry.endTime) {
       const displayed = formatTimeInput(entry.endTime, timezone, timeFormat)
       const span = new Date(entry.endTime).getTime() - new Date(start).getTime()
       if (
-        endTime.trim() === displayed.trim() &&
+        endVal.trim() === displayed.trim() &&
         span > MULTI_DAY_MS &&
         resolved !== entry.endTime
       ) {
@@ -306,7 +318,7 @@ export function EntryRow({
     <>
       <li
         className={cn(
-          'flex flex-wrap items-center gap-2 rounded-lg border px-2 py-2',
+          'flex flex-wrap items-center gap-2 rounded-lg border px-2 py-2 xl:flex-nowrap',
           running ? 'border-emerald-500/50 bg-emerald-500/5' : 'border-border',
           loading && 'pointer-events-none opacity-60',
         )}
@@ -315,19 +327,27 @@ export function EntryRow({
           <Loader2 className="h-4 w-4 shrink-0 animate-spin text-muted-foreground" aria-hidden />
         )}
 
-        <Input
-          className="h-8 min-w-[140px] flex-[1_1_200px]"
-          value={title}
-          disabled={loading}
-          placeholder={t('tracker.title')}
-          onChange={(e) => setTitle(e.target.value)}
-          onBlur={saveTitle}
-        />
+        <div className="min-w-0 flex-1 basis-[8rem]">
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Input
+                className="h-8 w-full min-w-0"
+                value={title}
+                disabled={loading}
+                placeholder={t('tracker.title')}
+                onChange={(e) => setTitle(e.target.value)}
+                onBlur={saveTitle}
+              />
+            </TooltipTrigger>
+            {title.trim() && <TooltipContent>{title}</TooltipContent>}
+          </Tooltip>
+        </div>
 
         <ProjectSelect
           value={projectId}
           projects={projects}
           disabled={loading}
+          className="shrink-0"
           onChange={applyProject}
         />
 
@@ -383,12 +403,24 @@ export function EntryRow({
           entryDate={entryDate}
           timeFormat={timeFormat}
           disabled={loading}
-          endDisabled={running}
+          hideEndTime={running}
           onStartTimeChange={setStartTime}
           onEndTimeChange={setEndTime}
           onDateChange={applyEntryDate}
-          onStartBlur={saveStart}
-          onEndBlur={saveEnd}
+          onStartFocus={() => {
+            startTimeFocused.current = true
+          }}
+          onEndFocus={() => {
+            endTimeFocused.current = true
+          }}
+          onStartBlur={(normalized) => {
+            startTimeFocused.current = false
+            saveStart(normalized)
+          }}
+          onEndBlur={(normalized) => {
+            endTimeFocused.current = false
+            saveEnd(normalized)
+          }}
           startAriaLabel={t('tracker.startTime')}
           endAriaLabel={t('tracker.endTime')}
           dateAriaLabel={t('tracker.entryDate')}
