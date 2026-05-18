@@ -6,8 +6,14 @@ import { Input } from '@/components/ui/input'
 import { cn } from '@/lib/utils'
 import { Calendar } from 'lucide-react'
 
-const timeInputClass =
-  'h-8 min-w-0 flex-1 font-mono text-sm tabular-nums shadow-none focus-visible:z-10'
+const timeInputWidth = (timeFormat: TimeFormat) =>
+  timeFormat === '12' ? 'w-[7rem]' : 'w-[5.5rem]'
+
+const timeInputClass = (timeFormat: TimeFormat) =>
+  cn(
+    'h-8 shrink-0 px-2 font-mono text-sm tabular-nums shadow-none focus-visible:z-10',
+    timeInputWidth(timeFormat),
+  )
 
 function commitOnEnter(e: React.KeyboardEvent<HTMLInputElement>) {
   if (e.key === 'Enter') {
@@ -71,18 +77,10 @@ export function EntryTimeRangeField({
   }
 
   return (
-    <div
-      className={cn(
-        'flex items-stretch',
-        hideEndTime
-          ? 'min-w-[120px] shrink-0 flex-[0_0_auto]'
-          : 'min-w-[200px] shrink-0 flex-[0_0_auto]',
-        className,
-      )}
-    >
+    <div className={cn('flex shrink-0 items-stretch', className)}>
       <Input
         type="text"
-        className={cn(timeInputClass, 'rounded-r-none border-r-0')}
+        className={cn(timeInputClass(timeFormat), 'rounded-r-none border-r-0')}
         value={startTime}
         disabled={disabled}
         placeholder={placeholder}
@@ -95,7 +93,7 @@ export function EntryTimeRangeField({
       {!hideEndTime && (
         <Input
           type="text"
-          className={cn(timeInputClass, '-ml-px rounded-none border-r-0')}
+          className={cn(timeInputClass(timeFormat), '-ml-px rounded-none border-r-0')}
           value={endTime}
           disabled={disabled}
           placeholder={placeholder}
