@@ -20,6 +20,10 @@ const ALARM_CLOCK_PLUS: IconNode[] = [
   ['path', { d: 'M9 13h6' }],
 ]
 
+const RUNNING_BADGE_RED = '#f44336'
+const RUNNING_BADGE_CX = 19
+const RUNNING_BADGE_CY = 19
+
 let faviconRunning = false
 let faviconLink: HTMLLinkElement | null = null
 let themeListenerCount = 0
@@ -43,10 +47,16 @@ function iconNodeToMarkup(nodes: IconNode[]): string {
     .join('')
 }
 
+function runningBadgeMarkup(): string {
+  return `<circle cx="${RUNNING_BADGE_CX}" cy="${RUNNING_BADGE_CY}" r="4.5" fill="${RUNNING_BADGE_RED}" stroke="none"/>`
+}
+
 function buildFaviconSvg(running: boolean): string {
   const nodes = running ? ALARM_CLOCK_PLUS : ALARM_CLOCK
   const stroke = faviconStroke()
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="${stroke}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${iconNodeToMarkup(nodes)}</svg>`
+  const indicator = running ? runningBadgeMarkup() : ''
+  const icon = `<g fill="none" stroke="${stroke}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${iconNodeToMarkup(nodes)}</g>`
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none">${icon}${indicator}</svg>`
 }
 
 function getFaviconLink(): HTMLLinkElement {
