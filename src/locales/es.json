@@ -9,6 +9,66 @@
     "connect": "Conectar con Google",
     "connectedAs": "Conectado como {{email}}"
   },
+  "landing": {
+    "badge": "Gratis · Tus datos en Google Sheets",
+    "heroTitle": "Registra tu tiempo, conserva tus datos",
+    "heroSubtitle": "Control de horas sencillo que guarda todo en tu Google Drive. Inicia un temporizador, organiza por proyecto y exporta informes — sin suscripción.",
+    "continue": "Ir a espacios de trabajo",
+    "trust": {
+      "free": "Gratis",
+      "noCard": "Sin tarjeta",
+      "openSource": "Código abierto",
+      "ownership": "Tus datos son tuyos"
+    },
+    "featuresTitle": "Todo lo que necesitas para registrar horas",
+    "featuresSubtitle": "Un registro de tiempo enfocado en lo esencial: temporizador, proyectos, informes y exportación.",
+    "features": {
+      "timer": {
+        "title": "Temporizador en vivo",
+        "description": "Inicia y detén con un clic. Edita entradas manualmente cuando lo necesites."
+      },
+      "projects": {
+        "title": "Proyectos y tarifas",
+        "description": "Organiza el trabajo por proyecto con facturación, tarifas horarias y monedas."
+      },
+      "reports": {
+        "title": "Informes",
+        "description": "Filtra por fechas y proyecto. Consulta totales e importes facturables de un vistazo."
+      },
+      "sheets": {
+        "title": "Google Sheets como base",
+        "description": "Cada espacio es una hoja de cálculo en tu Drive. Ábrela en Sheets cuando quieras."
+      },
+      "export": {
+        "title": "Exportar CSV y PDF",
+        "description": "Descarga informes filtrados para facturación, nóminas o tu propio análisis."
+      },
+      "privacy": {
+        "title": "Privacidad primero",
+        "description": "Los tokens permanecen en tu navegador. Tus entradas nunca salen de tu cuenta de Google."
+      }
+    },
+    "howTitle": "Empieza en minutos",
+    "howSubtitle": "Sin configuración compleja ni dependencia del proveedor — inicia sesión y registra.",
+    "steps": {
+      "connect": {
+        "title": "Conectar Google",
+        "description": "Inicia sesión con tu cuenta de Google. Solo accedemos a hojas que crea esta app."
+      },
+      "workspace": {
+        "title": "Crear un espacio",
+        "description": "Se crea una hoja de cálculo nueva en tu carpeta CalculaHora de Drive."
+      },
+      "track": {
+        "title": "Registrar e informar",
+        "description": "Anota horas, asigna proyectos y exporta informes cuando los necesites."
+      }
+    },
+    "ctaTitle": "¿Listo para registrar tu tiempo?",
+    "ctaSubtitle": "Conecta con Google y crea tu primer espacio. Tu hoja de cálculo, tus reglas.",
+    "footerNote": "Pensado para autónomos y equipos pequeños",
+    "openSource": "Código abierto en"
+  },
   "workspaces": {
     "title": "Espacios de trabajo",
     "subtitle": "Cada espacio es una hoja de cálculo en tu carpeta CalculaHora.",

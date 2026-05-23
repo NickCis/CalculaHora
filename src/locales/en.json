@@ -9,6 +9,66 @@
     "connect": "Connect with Google",
     "connectedAs": "Connected as {{email}}"
   },
+  "landing": {
+    "badge": "Free · Your data in Google Sheets",
+    "heroTitle": "Track your time, keep your data",
+    "heroSubtitle": "Simple time tracking that stores everything in your Google Drive. Start a timer, organize by project, and export reports — no subscription required.",
+    "continue": "Go to workspaces",
+    "trust": {
+      "free": "Free to use",
+      "noCard": "No credit card",
+      "openSource": "Open source",
+      "ownership": "You own your data"
+    },
+    "featuresTitle": "Everything you need to track time",
+    "featuresSubtitle": "A focused time tracker with the essentials — timer, projects, reports, and exports.",
+    "features": {
+      "timer": {
+        "title": "Live timer",
+        "description": "Start and stop timers in one click. Edit entries manually when you need to."
+      },
+      "projects": {
+        "title": "Projects & rates",
+        "description": "Organize work by project with billable flags, hourly rates, and currencies."
+      },
+      "reports": {
+        "title": "Reports",
+        "description": "Filter by date range and project. See totals and billable amounts at a glance."
+      },
+      "sheets": {
+        "title": "Google Sheets backend",
+        "description": "Each workspace is a spreadsheet in your Drive. Open it in Sheets anytime."
+      },
+      "export": {
+        "title": "CSV & PDF export",
+        "description": "Download filtered reports for invoicing, payroll, or your own analysis."
+      },
+      "privacy": {
+        "title": "Privacy first",
+        "description": "Tokens stay in your browser. Your time entries never leave your Google account."
+      }
+    },
+    "howTitle": "Get started in minutes",
+    "howSubtitle": "No setup wizard, no vendor lock-in — just sign in and track.",
+    "steps": {
+      "connect": {
+        "title": "Connect Google",
+        "description": "Sign in with your Google account. We only access spreadsheets this app creates."
+      },
+      "workspace": {
+        "title": "Create a workspace",
+        "description": "A new spreadsheet is created in your CalculaHora folder on Drive."
+      },
+      "track": {
+        "title": "Track & report",
+        "description": "Log time, assign projects, and export reports whenever you need them."
+      }
+    },
+    "ctaTitle": "Ready to track your time?",
+    "ctaSubtitle": "Connect with Google and create your first workspace. Your spreadsheet, your rules.",
+    "footerNote": "Built for freelancers and small teams",
+    "openSource": "Open source on"
+  },
   "workspaces": {
     "title": "Workspaces",
     "subtitle": "Each workspace is a spreadsheet in your CalculaHora folder.",
