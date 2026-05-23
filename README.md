@@ -59,6 +59,7 @@ npm run dev   # restart after changing .env
    - `GOOGLE_CLIENT_SECRET` — server-only, **do not** prefix with `VITE_`
 3. Ensure the production origin and redirect URI above are registered in Google Cloud (same OAuth client as local dev).
 4. Add production test users (or publish the OAuth app) on the [Audience](https://console.cloud.google.com/auth/audience) page.
+5. For the OAuth consent screen, use the app logo at `public/logo-120.png` (120×120 px) and link to the hosted privacy policy (`/privacy`) and terms (`/terms`).
 
 ## Security notes
 

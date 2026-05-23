@@ -178,5 +178,135 @@
     "switch": "Switch language",
     "en": "English",
     "es": "Spanish"
+  },
+  "legal": {
+    "backToHome": "Home",
+    "privacyLink": "Privacy Policy",
+    "termsLink": "Terms of Service",
+    "privacy": {
+      "title": "Privacy Policy",
+      "lastUpdated": "Last updated: May 23, 2026",
+      "sections": [
+        {
+          "title": "Overview",
+          "paragraphs": [
+            "CalculaHora (\"we\", \"us\", or \"the app\") is a simple time-tracking application that stores your data in Google Sheets on your Google Drive.",
+            "This Privacy Policy explains what information the app handles when you use https://calculahora.vercel.app and related services."
+          ]
+        },
+        {
+          "title": "Information we collect",
+          "paragraphs": [
+            "When you sign in with Google, we receive your Google account email address and OAuth tokens (access and refresh tokens) needed to use Google APIs on your behalf.",
+            "OAuth tokens are stored only in your browser's local storage on the device you use. We do not operate a user database or store your tokens on our servers.",
+            "Your time entries, projects, and workspace settings are stored in Google Spreadsheets created by the app in your Google Drive. We do not copy that spreadsheet data to our servers."
+          ]
+        },
+        {
+          "title": "How we use your information",
+          "paragraphs": [
+            "We use your Google OAuth tokens to authenticate API requests from your browser to Google Sheets and Google Drive, so you can create workspaces and read or write your time-tracking data.",
+            "Your email address may be shown in the app interface (for example, to indicate which Google account is connected).",
+            "We do not sell your personal information, use it for advertising, or share it with third parties except as described below."
+          ]
+        },
+        {
+          "title": "Where your data is stored",
+          "paragraphs": [
+            "Spreadsheet data remains in your Google account under the CalculaHora folder created by the app.",
+            "OAuth tokens remain in your browser until you disconnect Google or clear site data for this application.",
+            "When you sign in, your browser sends an authorization code to our serverless token endpoint (/api/oauth/token), hosted on Vercel, solely to exchange it for OAuth tokens using Google's token endpoint. That exchange uses your Google OAuth client credentials configured for the deployment. We do not persist your tokens on the server as part of normal operation."
+          ]
+        },
+        {
+          "title": "Google API Services",
+          "paragraphs": [
+            "CalculaHora uses Google API Services, including Google Drive and Google Sheets, and its use of information received from Google APIs adheres to the Google API Services User Data Policy, including the Limited Use requirements.",
+            "The app requests the drive.file scope so it can access only files it created or that you opened with the app, plus openid and email for sign-in."
+          ]
+        },
+        {
+          "title": "Your choices",
+          "paragraphs": [
+            "You can disconnect Google at any time from the app, which removes stored tokens from your browser.",
+            "You can delete workspace spreadsheets directly in Google Drive.",
+            "You can revoke the app's access from your Google Account security settings at https://myaccount.google.com/permissions."
+          ]
+        },
+        {
+          "title": "Changes to this policy",
+          "paragraphs": [
+            "We may update this Privacy Policy from time to time. The \"Last updated\" date at the top of this page will reflect the latest revision.",
+            "Continued use of the app after changes means you accept the updated policy."
+          ]
+        },
+        {
+          "title": "Contact",
+          "paragraphs": [
+            "CalculaHora is open source. Questions or concerns can be raised via GitHub issues at https://github.com/NickCis/CalculaHora."
+          ]
+        }
+      ]
+    },
+    "terms": {
+      "title": "Terms of Service",
+      "lastUpdated": "Last updated: May 23, 2026",
+      "sections": [
+        {
+          "title": "Agreement",
+          "paragraphs": [
+            "By accessing or using CalculaHora, you agree to these Terms of Service. If you do not agree, do not use the app."
+          ]
+        },
+        {
+          "title": "The service",
+          "paragraphs": [
+            "CalculaHora provides a web-based time-tracking interface that stores data in Google Spreadsheets in your Google Drive.",
+            "The app is provided free of charge and may change, be suspended, or be discontinued at any time without notice."
+          ]
+        },
+        {
+          "title": "Your account and data",
+          "paragraphs": [
+            "You must use a valid Google account to sign in. You are responsible for maintaining the security of your Google account and device.",
+            "You retain ownership of the spreadsheets and data you create. The app acts as a client to Google APIs using permissions you grant.",
+            "You are responsible for the accuracy of time entries and any use of exported reports (for example, billing or payroll)."
+          ]
+        },
+        {
+          "title": "Acceptable use",
+          "paragraphs": [
+            "You agree not to misuse the app, attempt to interfere with its operation, or use it in violation of applicable laws or Google's terms.",
+            "You must comply with Google's API terms and policies when using CalculaHora."
+          ]
+        },
+        {
+          "title": "Disclaimer",
+          "paragraphs": [
+            "CalculaHora is provided \"as is\" and \"as available\" without warranties of any kind, whether express or implied, including merchantability, fitness for a particular purpose, and non-infringement.",
+            "We do not guarantee uninterrupted or error-free operation. Spreadsheet data depends on Google services and your network connection."
+          ]
+        },
+        {
+          "title": "Limitation of liability",
+          "paragraphs": [
+            "To the fullest extent permitted by law, the authors and contributors of CalculaHora shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of data, profits, or revenue arising from your use of the app."
+          ]
+        },
+        {
+          "title": "Changes to these terms",
+          "paragraphs": [
+            "We may update these Terms of Service from time to time. The \"Last updated\" date at the top of this page indicates the latest version.",
+            "Your continued use of the app after changes constitutes acceptance of the revised terms."
+          ]
+        },
+        {
+          "title": "Contact",
+          "paragraphs": [
+            "For questions about these terms, open an issue at https://github.com/NickCis/CalculaHora."
+          ]
+        }
+      ]
+    }
   }
 }

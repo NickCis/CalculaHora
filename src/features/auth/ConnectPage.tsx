@@ -182,6 +182,15 @@ export function ConnectPage() {
         <div className="mx-auto max-w-5xl px-6 py-8 text-center text-sm text-muted-foreground">
           <p>{t('app.tagline')}</p>
           <p className="mt-1">{t('landing.footerNote')}</p>
+          <p className="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
+            <Link to="/privacy" className="hover:text-foreground hover:underline">
+              {t('legal.privacyLink')}
+            </Link>
+            <span aria-hidden>·</span>
+            <Link to="/terms" className="hover:text-foreground hover:underline">
+              {t('legal.termsLink')}
+            </Link>
+          </p>
           <p className="mt-3 inline-flex items-center justify-center gap-1.5">
             <ExternalLink className="size-4" aria-hidden />
             <span>{t('landing.openSource')}</span>

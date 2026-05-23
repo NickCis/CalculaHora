@@ -8,6 +8,8 @@ import { TrackerPage } from '@/features/tracker/TrackerPage'
 import { ProjectsPage } from '@/features/projects/ProjectsPage'
 import { ReportsPage } from '@/features/reports/ReportsPage'
 import { WorkspaceSettingsPage } from '@/features/workspace/WorkspaceSettingsPage'
+import { PrivacyPage } from '@/features/legal/PrivacyPage'
+import { TermsPage } from '@/features/legal/TermsPage'
 import { HomePage } from './HomePage'
 
 function RequireAuth({ children }: { children: React.ReactNode }) {
@@ -21,6 +23,8 @@ export function AppRoutes() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/connect" element={<ConnectPage />} />
+        <Route path="/privacy" element={<PrivacyPage />} />
+        <Route path="/terms" element={<TermsPage />} />
         <Route path="/oauth/callback" element={<OAuthCallbackPage />} />
         <Route
           path="/workspaces"
