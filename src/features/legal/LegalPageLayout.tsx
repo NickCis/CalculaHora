@@ -16,7 +16,7 @@ export function LegalPageLayout({ title, lastUpdated, children }: LegalPageLayou
     <div className="min-h-screen bg-background">
       <header className="sticky top-0 z-10 border-b bg-background/80 backdrop-blur-sm">
         <div className="mx-auto flex max-w-3xl items-center justify-between px-6 py-4">
-          <Link to="/connect" className="flex items-center gap-2.5 hover:opacity-80">
+          <Link to="/" className="flex items-center gap-2.5 hover:opacity-80">
             <div className="flex size-9 items-center justify-center rounded-lg bg-primary text-primary-foreground">
               <Clock className="size-5" aria-hidden />
             </div>
@@ -28,7 +28,7 @@ export function LegalPageLayout({ title, lastUpdated, children }: LegalPageLayou
 
       <main className="mx-auto max-w-3xl px-6 py-10 sm:py-14">
         <p className="text-sm text-muted-foreground">
-          <Link to="/connect" className="hover:text-foreground hover:underline">
+          <Link to="/" className="hover:text-foreground hover:underline">
             {t('legal.backToHome')}
           </Link>
         </p>
@@ -47,7 +47,7 @@ export function LegalPageLayout({ title, lastUpdated, children }: LegalPageLayou
             {t('legal.termsLink')}
           </Link>
           <span aria-hidden>·</span>
-          <Link to="/connect" className="hover:text-foreground hover:underline">
+          <Link to="/" className="hover:text-foreground hover:underline">
             {t('legal.backToHome')}
           </Link>
         </div>

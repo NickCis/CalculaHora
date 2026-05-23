@@ -92,7 +92,7 @@ export function WorkspaceLayout() {
                   className="size-8"
                   onClick={() => {
                     logout()
-                    navigate('/connect')
+                    navigate('/')
                   }}
                   aria-label={t('common.logout')}
                 >

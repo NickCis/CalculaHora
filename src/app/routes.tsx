@@ -1,6 +1,5 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { isAuthenticated } from '@/lib/google/oauth'
-import { ConnectPage } from '@/features/auth/ConnectPage'
 import { OAuthCallbackPage } from '@/features/auth/OAuthCallbackPage'
 import { WorkspacesPage } from '@/features/workspaces/WorkspacesPage'
 import { WorkspaceLayout } from '@/features/workspace/WorkspaceLayout'
@@ -13,7 +12,7 @@ import { TermsPage } from '@/features/legal/TermsPage'
 import { HomePage } from './HomePage'
 
 function RequireAuth({ children }: { children: React.ReactNode }) {
-  if (!isAuthenticated()) return <Navigate to="/connect" replace />
+  if (!isAuthenticated()) return <Navigate to="/" replace />
   return children
 }
 
@@ -22,7 +21,7 @@ export function AppRoutes() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/connect" element={<ConnectPage />} />
+        <Route path="/connect" element={<Navigate to="/" replace />} />
         <Route path="/privacy" element={<PrivacyPage />} />
         <Route path="/terms" element={<TermsPage />} />
         <Route path="/oauth/callback" element={<OAuthCallbackPage />} />

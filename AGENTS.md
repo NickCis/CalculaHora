@@ -45,7 +45,8 @@ Path alias: `@/*` → `src/*` (see `tsconfig.app.json`).
 
 | Path | Purpose |
 |------|---------|
-| `/connect` | Google sign-in |
+| `/` | Landing (logged out) or redirect to app (logged in) |
+| `/connect` | Redirects to `/` |
 | `/oauth/callback` | PKCE callback |
 | `/workspaces` | Pick/create workspace |
 | `/w/:spreadsheetId/tracker` | Time entries |
