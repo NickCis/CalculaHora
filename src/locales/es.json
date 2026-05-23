@@ -111,6 +111,12 @@
     "prev": "Anterior",
     "next": "Siguiente",
     "yes": "Sí",
-    "no": "No"
+    "no": "No",
+    "reportBug": "Reportar un error"
+  },
+  "language": {
+    "switch": "Cambiar idioma",
+    "en": "Inglés",
+    "es": "Español"
   }
 }

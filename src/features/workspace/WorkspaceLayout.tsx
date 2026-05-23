@@ -1,7 +1,7 @@
 import { NavLink, Outlet, useNavigate, useParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
-import { LogOut } from 'lucide-react'
+import { Bug, LayoutGrid, LogOut } from 'lucide-react'
 import { SpreadsheetWorkspaceRepository } from '@/lib/sheets/repository'
 import { logout } from '@/lib/google/oauth'
 import { Button } from '@/components/ui/button'
@@ -11,6 +11,7 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip'
 import { cn } from '@/lib/utils'
+import { LanguagePicker } from '@/components/LanguagePicker'
 import { RunningTimerDocument } from '@/components/RunningTimerDocument'
 import { workspaceContentClass } from '@/lib/layout'
 
@@ -48,14 +49,41 @@ export function WorkspaceLayout() {
         <div className={cn(workspaceContentClass, 'flex flex-wrap items-center justify-between gap-4')}>
           <div>
             <h1 className="text-xl font-semibold">{meta?.name ?? t('common.loading')}</h1>
-            {meta?.timezone && (
-              <p className="text-xs text-muted-foreground">{meta.timezone}</p>
-            )}
+            <p className="text-xs text-muted-foreground">
+              {meta?.timezone ?? '\u00A0'}
+            </p>
           </div>
           <div className="flex items-center gap-2">
-            <Button variant="outline" size="sm" onClick={() => navigate('/workspaces')}>
-              {t('workspaces.switch')}
-            </Button>
+            <LanguagePicker />
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="size-8"
+                  onClick={() => navigate('/workspaces')}
+                  aria-label={t('workspaces.switch')}
+                >
+                  <LayoutGrid className="h-4 w-4" />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>{t('workspaces.switch')}</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button variant="outline" size="icon" className="size-8" asChild>
+                  <a
+                    href="https://github.com/NickCis/CalculaHora/issues/new"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={t('common.reportBug')}
+                  >
+                    <Bug className="h-4 w-4" />
+                  </a>
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>{t('common.reportBug')}</TooltipContent>
+            </Tooltip>
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button
