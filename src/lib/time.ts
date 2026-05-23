@@ -400,14 +400,15 @@ function parseFilterDate(value: string): number {
 
 export function filterEntries(
   entries: TimeEntry[],
-  opts: { from?: string; to?: string; projectId?: string },
+  opts: { from?: string; to?: string; projectIds?: string[] },
 ): TimeEntry[] {
+  const projectFilter =
+    opts.projectIds && opts.projectIds.length > 0 ? new Set(opts.projectIds) : null
   return entries.filter((e) => {
     const t = new Date(e.startTime).getTime()
     if (opts.from && t < parseFilterDate(opts.from)) return false
     if (opts.to && t > parseFilterDate(opts.to)) return false
-    if (opts.projectId && opts.projectId !== 'all' && e.projectId !== opts.projectId)
-      return false
+    if (projectFilter && !projectFilter.has(e.projectId)) return false
     return true
   })
 }

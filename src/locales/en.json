@@ -138,6 +138,7 @@
     "to": "To",
     "project": "Project",
     "allProjects": "All projects",
+    "projectsSelected": "{{count}} projects",
     "presets": {
       "thisMonth": "This month",
       "lastMonth": "Last month",

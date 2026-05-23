@@ -25,6 +25,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
+import { ProjectMultiSelect } from '@/components/ProjectMultiSelect'
 
 export function ReportsPage() {
   const { t } = useTranslation()
@@ -33,7 +34,7 @@ export function ReportsPage() {
   const qc = useQueryClient()
   const [fromLocal, setFromLocal] = useState('')
   const [toLocal, setToLocal] = useState('')
-  const [projectId, setProjectId] = useState('all')
+  const [selectedProjectIds, setSelectedProjectIds] = useState<string[]>([])
   const [exportShowAmount, setExportShowAmount] = useState(false)
 
   const { data: meta } = useQuery({
@@ -60,9 +61,9 @@ export function ReportsPage() {
       filterEntries(entries, {
         from: fromFilter,
         to: toFilter,
-        projectId,
+        projectIds: selectedProjectIds,
       }),
-    [entries, fromFilter, toFilter, projectId],
+    [entries, fromFilter, toFilter, selectedProjectIds],
   )
 
   const hasRunning = filtered.some(isRunningEntry)
@@ -156,18 +157,11 @@ export function ReportsPage() {
           </div>
           <div className="space-y-2 sm:col-span-2">
             <Label>{t('reports.project')}</Label>
-            <select
-              className="h-9 w-full rounded-md border border-input bg-transparent px-3 text-sm"
-              value={projectId}
-              onChange={(e) => setProjectId(e.target.value)}
-            >
-              <option value="all">{t('reports.allProjects')}</option>
-              {projects.map((p) => (
-                <option key={p.id} value={p.id}>
-                  {p.name}
-                </option>
-              ))}
-            </select>
+            <ProjectMultiSelect
+              value={selectedProjectIds}
+              projects={projects}
+              onChange={setSelectedProjectIds}
+            />
           </div>
           <div className="flex flex-wrap gap-2 sm:col-span-2">
             <Button
@@ -187,8 +181,11 @@ export function ReportsPage() {
                     fromIso: fromLocal ? fromFilter : undefined,
                     toIso: toLocal ? toFilter : undefined,
                     projectFilterName:
-                      projectId !== 'all'
-                        ? projects.find((p) => p.id === projectId)?.name
+                      selectedProjectIds.length > 0
+                        ? selectedProjectIds
+                            .map((id) => projects.find((p) => p.id === id)?.name)
+                            .filter((name): name is string => Boolean(name))
+                            .join(', ')
                         : undefined,
                     showAmount: exportShowAmount,
                     now,
